@@ -1,15 +1,8 @@
-/*-----------------------------------------------------------------------------
-Hands-On Lab: Intro to Data Engineering with Notebooks
-Script:       bootstrap.sql
-Author:       Jeremiah Hansen
-Last Updated: 6/11/2024
------------------------------------------------------------------------------*/
-
 SET MY_USER = CURRENT_USER();
-SET GITHUB_SECRET_USERNAME = 'username';
-SET GITHUB_SECRET_PASSWORD = 'personal access token';
-SET GITHUB_URL_PREFIX = 'https://github.com/username';
-SET GITHUB_REPO_ORIGIN = 'https://github.com/username/sfguide-data-engineering-with-notebooks.git';
+SET GITHUB_SECRET_USERNAME = '<username>';
+SET GITHUB_SECRET_PASSWORD = '<password>';
+SET GITHUB_URL_PREFIX = 'https://github.com/<username>';
+SET GITHUB_REPO_ORIGIN = 'https://github.com/<username>/sfguide-data-engineering-with-notebooks.git';
 
 
 -- ----------------------------------------------------------------------------
@@ -51,9 +44,11 @@ CREATE OR REPLACE SCHEMA PROD_SCHEMA;
 
 USE SCHEMA INTEGRATIONS;
 
--- External Frostbyte objects
-CREATE OR REPLACE STAGE FROSTBYTE_RAW_STAGE
-    URL = 's3://sfquickstarts/data-engineering-with-snowpark-python/'
+-- External Financial Data objects
+CREATE OR REPLACE STAGE FINANCIAL_DATA_RAW_STAGE
+    URL = 's3://snowpark-hol-demo/'
+    DIRECTORY = (ENABLE = TRUE)
+    AUTO_REFRESH = TRUE
 ;
 
 -- Secrets (schema level)
