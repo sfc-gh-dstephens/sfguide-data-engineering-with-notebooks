@@ -3,4 +3,4 @@ channels:
   - snowflake
 dependencies:
   - snowflake
-  - snowflake.cortex
+  - snowflake-ml-python
