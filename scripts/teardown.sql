@@ -13,7 +13,4 @@ DROP DATABASE DEMO_DB;
 DROP WAREHOUSE DEMO_WH;
 DROP ROLE DEMO_ROLE;
 
--- Drop the weather share
-DROP DATABASE FROSTBYTE_WEATHERSOURCE;
-
 -- Remove the "dev" branch in your repo
