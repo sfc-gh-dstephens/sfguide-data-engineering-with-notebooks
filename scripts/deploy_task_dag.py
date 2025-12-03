@@ -25,8 +25,8 @@ def main(session: Session, database_name, schema_name) -> str:
 
     # Define the DAG
     with DAG(dag_name, schedule=timedelta(days=1), warehouse=warehouse_name) as dag:
-        dag_task1 = DAGTask("LOAD_EXCEL_FILES_TASK", definition=f'''EXECUTE NOTEBOOK "{database_name}"."{schema_name}"."{env}_load_excel_files"()''', warehouse=warehouse_name)
-        dag_task2 = DAGTask("LOAD_DAILY_TRANSACTIONS_AND_SUMMARIES", definition=f'''EXECUTE NOTEBOOK "{database_name}"."{schema_name}"."{env}_load_daily_transactions_and_summaries"()''', warehouse=warehouse_name)
+        dag_task1 = DAGTask("LOAD_EXCEL_FILES_TASK", definition=f'''EXECUTE NOTEBOOK "{database_name}"."{schema_name}"."{env}_load_excel_files"('database={database_name}', 'schema={schema_name}')''', warehouse=warehouse_name)
+        dag_task2 = DAGTask("LOAD_DAILY_TRANSACTIONS_AND_SUMMARIES", definition=f'''EXECUTE NOTEBOOK "{database_name}"."{schema_name}"."{env}_load_daily_transactions_and_summaries"('database={database_name}', 'schema={schema_name}')''', warehouse=warehouse_name)
 
         # Define the dependencies between the tasks
         dag_task1 >> dag_task2 # dag_task1 is a predecessor of dag_task2
